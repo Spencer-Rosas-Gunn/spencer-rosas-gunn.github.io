@@ -56,10 +56,14 @@
         <div class="content-section" id="content">
             <p>Nonsense</p>
         </div>
+        <button id="prevButton" class="button" style="display: none;" onclick="showPreviousPost()">Previous Post</button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
+        let blogData = [];
+        let currentPostIndex = 0;
+
         function getFile(fileName) {
             return fetch(fileName)
                 .then(response => {
@@ -73,31 +77,51 @@
                     return null;
                 });
         }
-    
+
+        function parseBlogData(data) {
+            blogData = data.split('\n\n').map(post => marked.parse(post.trim()));
+        }
+
         function showPortfolio() {
             getFile("portfolio.md")
                 .then(data => {
                     document.getElementById("content").innerHTML = marked.parse(data);
-                    arrow(false);
+                    document.getElementById("prevButton").style.display = "none";
                 });
         }
-    
+
         function showResume() {
             getFile("resume.md")
                 .then(data => {
                     document.getElementById("content").innerHTML = marked.parse(data);
-                    arrow(false);
+                    document.getElementById("prevButton").style.display = "none";
                 });
         }
-    
+
         function showBlog() {
             getFile("blog.md")
                 .then(data => {
-                    document.getElementById("content").innerHTML = marked.parse(data);
-                    arrow(true);
+                    parseBlogData(data);
+                    currentPostIndex = 0;
+                    displayCurrentPost();
                 });
         }
-    </script>
 
+        function displayCurrentPost() {
+            document.getElementById("content").innerHTML = blogData[currentPostIndex];
+            if (currentPostIndex > 0) {
+                document.getElementById("prevButton").style.display = "block";
+            } else {
+                document.getElementById("prevButton").style.display = "none";
+            }
+        }
+
+        function showPreviousPost() {
+            if (currentPostIndex > 0) {
+                currentPostIndex--;
+                displayCurrentPost();
+            }
+        }
+    </script>
 </body>
 </html>
