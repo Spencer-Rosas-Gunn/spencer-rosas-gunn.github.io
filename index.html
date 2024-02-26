@@ -59,6 +59,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
         async function getFile(fileName) {
             try {
@@ -74,21 +75,22 @@
             }
         }
     
-        function showPortfolio() {
+        async function showPortfolio() {
             document.getElementById("content").innerHTML = marked.parse(await getFile("portfolio.md"));
             arrow(false);
         }
-
-        function showResume() {
-            document.getElementById("content").innerHTML = marked.parse(await getFile("resume.md"))
+    
+        async function showResume() {
+            document.getElementById("content").innerHTML = marked.parse(await getFile("resume.md"));
             arrow(false);
         }
-
-        function showBlog() {
+    
+        async function showBlog() {
             // Your logic to fetch and render blog content
             document.getElementById("content").innerHTML = marked.parse(await getFile("blog.md"));
             arrow(true);
         }
-    </script>
+</script>
+
 </body>
 </html>
