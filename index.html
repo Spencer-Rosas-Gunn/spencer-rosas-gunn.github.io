@@ -1,9 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>TEST</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        #top-bar {
+            background-color: #333;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 50px;
+            color: #fff;
+        }
+        #content {
+            padding: 20px;
+        }
+        #blog-content {
+            text-align: center;
+        }
+        .arrow {
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-  <p>TEST</p>
+
+<div id="top-bar">
+    <div><a href="#" onclick="loadContent('portfolio.md')">Portfolio</a></div>
+    <div><a href="#" onclick="loadContent('resume.md')">Resume</a></div>
+    <div><a href="#" onclick="loadBlog()">Blog</a></div>
+</div>
+
+<div id="content">
+    <div id="blog-content"></div>
+</div>
+
+<script>
+    let blogEntries = [];
+    let currentEntryIndex = -1;
+
+    function loadContent(filename) {
+        fetch(filename)
+            .then(response => response.text())
+            .then(text => {
+                document.getElementById('blog-content').innerHTML = marked(text);
+            })
+            .catch(error => console.error('Error loading content:', error));
+    }
+
+    function loadBlog() {
+        fetch('blog.md')
+            .then(response => response.text())
+            .then(text => {
+                blogEntries = text.split('\n#').filter(entry => entry.trim() !== '').map(entry => entry.trim());
+                currentEntryIndex = blogEntries.length - 1;
+                renderBlog();
+            })
+            .catch(error => console.error('Error loading blog entries:', error));
+    }
+
+    function renderBlog() {
+        if (blogEntries.length === 0) {
+            document.getElementById('blog-content').innerHTML = '<p>No entries found.</p>';
+            return;
+        }
+
+        let entry = blogEntries[currentEntryIndex];
+        document.getElementById('blog-content').innerHTML = marked('#' + entry);
+
+    }
+
+    function navigateBlog(direction) {
+        if (direction === 'next') {
+            currentEntryIndex = (currentEntryIndex - 1 + blogEntries.length) % blogEntries.length;
+        } else if (direction === 'prev') {
+            currentEntryIndex = (currentEntryIndex + 1) % blogEntries.length;
+        }
+        renderBlog();
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        loadContent('portfolio.md');
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        loadBlog();
+    });
+
+    function marked(text) {
+        return text;
+    }
+</script>
+
 </body>
 </html>
