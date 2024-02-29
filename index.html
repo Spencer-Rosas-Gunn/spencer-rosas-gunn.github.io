@@ -99,6 +99,7 @@
         }
 
         function showBlog() {
+            currentPostIndex = blogData.length();
             getFile("blog.md")
                 .then(data => {
                     parseBlogData(data);
