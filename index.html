@@ -80,6 +80,7 @@
 
         function parseBlogData(data) {
             blogData = data.split('\n\n').map(post => marked.parse(post.trim()));
+            blogData.reverse(); // Reverse the order of blog posts
         }
 
         function showPortfolio() {
@@ -99,7 +100,6 @@
         }
 
         function showBlog() {
-            currentPostIndex = blogData.length();
             getFile("blog.md")
                 .then(data => {
                     parseBlogData(data);
@@ -110,7 +110,7 @@
 
         function displayCurrentPost() {
             document.getElementById("content").innerHTML = blogData[currentPostIndex];
-            if (currentPostIndex > 0) {
+            if (currentPostIndex < blogData.length - 1) { // Adjust condition to check if there are more posts to display
                 document.getElementById("prevButton").style.display = "block";
             } else {
                 document.getElementById("prevButton").style.display = "none";
@@ -118,8 +118,8 @@
         }
 
         function showPreviousPost() {
-            if (currentPostIndex > 0) {
-                currentPostIndex--;
+            if (currentPostIndex < blogData.length - 1) {
+                currentPostIndex++;
                 displayCurrentPost();
             }
         }
