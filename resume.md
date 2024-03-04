@@ -21,7 +21,11 @@ _Spencer Benjamin-Steven Rosas-Gunn (+1 (214) 735-7398 | spencer.rosas-gunn@prot
 - Mathematics, Including Algebra, Calculus, Hypercomplex Geometry (Complex Numbers, Dual Numbers, Split Complex Numbers, and Quateernions), Vectors, Boolean Algebra, Bitwise Operations, IEEE Floating Point Representation, & Contiguous Memory Allocation
   
 - Branchless Programming and Optimization
-  
+
+### Experience
+
+**Ghost (Qt5-Based Web Browser)**
+_Sole Creator & Maintainer_
 
 ### Education
 
