@@ -4,7 +4,7 @@ _Spencer Benjamin-Steven Rosas-Gunn (+1 (214) 735-7398 | spencer.rosas-gunn@prot
 
 ### Skills
 
-- Intimate Knowledge of & Experience with Microsoft Visual C++11, Microsoft Visual C++17 ISO C++03, ISO C++11, ISO C++17, ANSI C89, ISO C90, ISO C99, and ISO C11/C18
+- Intimate Knowledge of & Experience with Microsoft Visual C++11, Microsoft Visual C++17, ISO C++03, ISO C++11, ISO C++17, ANSI C89, ISO C90, ISO C99, and ISO C11/C18
   
 - Knowledge of C++, C, C# (with or without .NET), Java, TypeScript, JavaScript, JSON, Python, Lua, D (including SafeD), GLSL (with OpenGL or Vulkan), CommonMark, HTML/CSS, and GitMD
   
